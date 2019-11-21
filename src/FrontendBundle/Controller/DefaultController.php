@@ -28,6 +28,8 @@ class DefaultController extends Controller
 
         return $this->render('contact/contact.html.twig');
     }
+
+    //action de recherche
     public function SearchAction(Request $request)
     { 
         $destination = $request->query->get('destination');
@@ -89,7 +91,8 @@ class DefaultController extends Controller
             'maxPrix' =>'0'
         ));
     }
-    
+
+    //bouton réserver yjiblek les données lkl mta3  lhotel
     public function reserverAction($id)
     {
        
