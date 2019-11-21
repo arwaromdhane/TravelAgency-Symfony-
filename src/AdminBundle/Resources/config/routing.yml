@@ -1,0 +1,21 @@
+admin_circuit:
+    resource: "@AdminBundle/Resources/config/routing/circuit.yml"
+    prefix:   /circuit
+
+admin_hotel:
+    resource: "@AdminBundle/Resources/config/routing/hotel.yml"
+    prefix:   /hotel
+
+admin_excursion:
+    resource: "@AdminBundle/Resources/config/routing/excursion.yml"
+    prefix:   /excursion
+
+admin_promotion:
+    resource: "@AdminBundle/Resources/config/routing/promotion.yml"
+    prefix:   /promotion
+
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+
+

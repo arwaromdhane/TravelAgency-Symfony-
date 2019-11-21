@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+{% block title %} Liste Reservations Rondonnées {% endblock %}
+{% block body %}
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Lieu Départ</th>
+                <th>Lieu Arrivée</th>
+                <th>Client</th>
+                <th>Date Reservation</th>
+                <th>Message</th>
+                <th>Num.Tel</th>
+                <th>Personne(s)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations if reservation.excursion != null  %}
+            <tr>
+                <td>                    
+                    {% if reservation.etat  == "en attente" %}
+                        <a class="btnCercle" title="reservation en attente" style=" margin-left: 42%; display:block; height: 10px; width: 10px; border-radius: 50%;   background-color: orange;" href="#">
+                            <i class="ion-ios-arrow-down"></i>
+                        </a>
+                    {% elseif reservation.etat  == "refusé"  %}
+                         <a class="btnCercle" title="reservation refusée" style=" margin-left: 42%; display:block; height: 10px; width: 10px; border-radius: 50%; background-color: red;" href="#">
+                            <i class="ion-ios-arrow-down"></i>
+                        </a>
+                    {% else %}
+                        <a class="btnCercle" title="reservation acceptée" style=" margin-left: 42%; display:block; height: 10px; width: 10px; border-radius: 50%;  background-color: green;" href="#">
+                            <i class="ion-ios-arrow-down"></i>
+                        </a>
+                    {% endif %}
+                </td>
+                <td>{{ reservation.excursion.lieuDepart }}</td>
+                <td>{{ reservation.excursion.lieuArrive }}</td>
+
+                <td>{{ reservation.user.username }}</td>
+                <td>{% if reservation.datereservation %}{{ reservation.datereservation|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ reservation.message }}</td>
+                <td>{{ reservation.numtel }}</td>
+                <td>{{ reservation.nbpassager }}</td> 
+
+                <td>
+                    {% if reservation.etat  == "en attente"  %}
+
+                        <a href="{{ path('accepterReservation' , {'id': reservation.id, 'type': "excursion"})  }}" class="btn-xs btn-default margin" type="button" title="Accepter">
+                            <span class="glyphicon glyphicon-check"></span> &nbsp;
+                        </a>
+                        <a href="{{ path('refuserReservation' , {'id': reservation.id, 'type': "excursion" })  }}" class="btn-xs btn-default margin" type="button" title="Refuser">
+                            <span class="glyphicon glyphicon-remove-circle"></span> &nbsp;
+                        </a>
+                    {%  else %}
+                        <a href="{{ path('supprimerReservation' , {'id': reservation.id, 'type': "excursion" })  }}" class="btn-xs btn-default margin" type="button" title="Supprimer">
+                            <span class="glyphicon glyphicon-trash"></span> &nbsp;
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+     
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block activeExcursion %}
+	<li class="main_nav_item active">
+		<a href="{{ path('offres_Excursions') }}">Rondonnées</a>
+	</li>
+{% endblock %}
+{% block mesreservation %}
+
+
+<div class="row top_content" style="margin: 20px;">
+	{% for excursion in excursions if (maxPrix == '0' or excursion.tarifs <= maxPrix) %}
+			<div class="col-lg-3 col-md-6 top_col" style="margin-bottom: 20px;">
+
+				<!-- Top Destination Item -->
+				<div class="top_item">
+					<a href="#">
+						<div class="top_item_image">
+							<img   src="{{app.request.basepath}}/uploads/images/{{ excursion.image }}" />
+						</div>
+
+						<div class="top_item_content">
+							<div class="top_item_price" style="background-color: #d8b64fd9;    margin-right: 35px;padding: 9px; font-weight: bolder;}">
+								Prix : {{excursion.tarifs}} dt 
+							</div>
+
+							<div class="top_item_text" style="background-color: #fe435bb8; margin-right: 34px;"> 
+								De {{excursion.lieuDepart}} à {{excursion.lieuArrive}}
+							</div>
+
+							<div class="top_item_price" style="background-color: #000000ad;margin-right: 35px;padding: 9px;">
+								{{excursion.description}} 
+							</div>
+
+							<div class="item_more_link" style=" margin-right: 35px;">
+								<a href="{{path('reservation_new',{'id':excursion.id, 'type':'excursion' })}}" class="btn btn-warning" type="submit">
+									Réserver
+								</a>
+ 							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+	{% else %}
+		<div style="background-color: #ff00003b; width: 100%; margin: 20px; padding: 20px;border-radius: 10px;">Aucun offres est trouvé.</div>
+	{% endfor %}
+		 
+
+{% endblock %}

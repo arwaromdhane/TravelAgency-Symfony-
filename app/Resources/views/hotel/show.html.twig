@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Hotel</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ hotel.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ hotel.nom }}</td>
+            </tr>
+            <tr>
+                <th>Nbretoile</th>
+                <td>{{ hotel.nbrEtoile }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ hotel.ville }}</td>
+            </tr>
+            <tr>
+                <th>Tarilpd</th>
+                <td>{{ hotel.tariLpd }}</td>
+            </tr>
+            <tr>
+                <th>Tarifpc</th>
+                <td>{{ hotel.tarifPc }}</td>
+            </tr>
+            <tr>
+                <th>Tarifsdp</th>
+                <td>{{ hotel.tarifsDp }}</td>
+            </tr>
+            <tr>
+                <th>All_soft</th>
+                <td>{{ hotel.allsoft }}</td>
+            </tr>
+            <tr>
+                <th>Taridallin</th>
+                <td>{{ hotel.taridAllIn }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ hotel.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Num_tel</th>
+                <td>{{ hotel.numtel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('hotel_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('hotel_edit', { 'id': hotel.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

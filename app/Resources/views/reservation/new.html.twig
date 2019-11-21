@@ -1,0 +1,50 @@
+{% extends 'baseFront.html.twig' %}
+ 
+
+{% block reservation %}
+
+    <div class="last">
+        <!-- Image by https://unsplash.com/@thanni -->
+        <div class="last_background parallax-window" data-parallax="scroll" data-image-src="{{asset('front/')}}images/last.jpg" data-speed="0.8"></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="last_logo"><img src="{{asset('front/')}}images/last_logo.png" alt=""></div>
+                 <div class="col-lg-3 last_col">                    
+                </div>
+                <div class="col-lg-6 last_col">
+                    <div class="last_item">
+                        <div class="last_item_content">
+                           <h3>Nouvelle Réservation</h3>
+                           <h4 <h4 style=" color: #131a2f; font-weight: bold;"> << {{ hotel }} {{ excursion }}  >> </h4>
+                            {{ form_start(form) }}
+                                {% if type == "hotel" %}
+                                    {{ form_row(form.dateDebut) }}
+                                    {{ form_row(form.dateFin) }}
+                                    {{ form_row(form.nbpassager) }}
+                                    {{ form_row(form.typeCabinet) }}
+                                    {{ form_row(form.typePension) }}                                    
+                                    {{ form_row(form.message) }}
+                                    {{ form_row(form.numtel) }}
+                                {% elseif type == "excursion" %}
+                                    {{ form_row(form.nbpassager) }}
+                                    {{ form_row(form.message) }}
+                                    {{ form_row(form.numtel) }}
+                                {% endif %}
+                                <input type="submit" class="btn btn-danger" value="Create" />
+                            {{ form_end(form, {'render_rest': false}) }}
+
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 last_col">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+{% endblock %}

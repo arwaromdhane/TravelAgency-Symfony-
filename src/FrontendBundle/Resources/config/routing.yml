@@ -1,0 +1,27 @@
+frontend_homepage:
+    path:     /
+    defaults: { _controller: FrontendBundle:Default:index }
+
+offres_Hotels:
+  path:     /offres_Hotels
+  defaults: { _controller: FrontendBundle:Default:offres_Hotels }
+
+offres_Excursions:
+  path:     /offres_Excursions
+  defaults: { _controller: FrontendBundle:Default:offres_Excursions }
+
+frontend_reservation:
+    resource: "@FrontendBundle/Resources/config/routing/reservation.yml"
+    prefix:   /reservation
+
+search:
+    path:     /search
+    defaults: { _controller: "FrontendBundle:Default:Search" }
+ 
+contact:
+    path:     /contact
+    defaults: { _controller: "FrontendBundle:Default:Contact" }
+ 
+sendMail:
+    path:     /sendMail
+    defaults: { _controller: "FrontendBundle:Default:sendMail" }

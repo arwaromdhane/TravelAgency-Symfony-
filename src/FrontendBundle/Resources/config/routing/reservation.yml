@@ -1,0 +1,46 @@
+reservation_hotel_index:
+    path:     /reservation_hotel
+    defaults: { _controller: "AdminBundle:Reservation:Hotel" }
+    methods:  GET
+
+reservation_excursion_index:
+    path:     /reservation_excursion
+    defaults: { _controller: "AdminBundle:Reservation:Excursion" }
+    methods:  GET
+
+reservation_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminBundle:Reservation:show" }
+    methods:  GET
+
+reservation_new:
+    path:     /{id}/{type}/new
+    defaults: { _controller: "AdminBundle:Reservation:new" }
+    methods:  [GET, POST]
+
+reservation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:Reservation:edit" }
+    methods:  [GET, POST]
+
+reservation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminBundle:Reservation:delete" }
+    methods:  DELETE
+
+mesReservations:
+    path:     /{id}/mesReservations
+    defaults: { _controller: "AdminBundle:Reservation:mesReservations" }
+    methods:  GET
+
+accepterReservation:
+    path:     /{id}/accepter
+    defaults: { _controller: "AdminBundle:Reservation:Accepter" }
+
+refuserReservation:
+    path:     /{id}/refuser
+    defaults: { _controller: "AdminBundle:Reservation:Refuser" }
+
+supprimerReservation:
+    path:     /{id}/supprimer
+    defaults: { _controller: "AdminBundle:Reservation:Supprimer" }

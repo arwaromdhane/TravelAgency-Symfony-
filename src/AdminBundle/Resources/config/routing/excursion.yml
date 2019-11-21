@@ -1,0 +1,24 @@
+excursion_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:Excursion:index" }
+    methods:  GET
+
+excursion_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminBundle:Excursion:show" }
+    methods:  GET
+
+excursion_new:
+    path:     /new
+    defaults: { _controller: "AdminBundle:Excursion:new" }
+    methods:  [GET, POST]
+
+excursion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:Excursion:edit" }
+    methods:  [GET, POST]
+
+excursion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminBundle:Excursion:delete" }
+    methods:  DELETE

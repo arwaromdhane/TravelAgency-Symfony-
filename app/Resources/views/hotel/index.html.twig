@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Hotels list</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Nbretoile</th>
+                <th>Ville</th>
+                <th>Tarilpd</th>
+                <th>Tarifpc</th>
+                <th>Tarifsdp</th>
+                <th>All_soft</th>
+                <th>Taridallin</th>
+                <th>Adresse</th>
+                <th>Num_tel</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hotel in hotels %}
+            <tr>
+                <td><a href="{{ path('hotel_show', { 'id': hotel.id }) }}">{{ hotel.id }}</a></td>
+                <td>{{ hotel.nom }}</td>
+                <td>{{ hotel.nbrEtoile }}</td>
+                <td>{{ hotel.ville }}</td>
+                <td>{{ hotel.tariLpd }}</td>
+                <td>{{ hotel.tarifPc }}</td>
+                <td>{{ hotel.tarifsDp }}</td>
+                <td>{{ hotel.allsoft }}</td>
+                <td>{{ hotel.taridAllIn }}</td>
+                <td>{{ hotel.adresse }}</td>
+                <td>{{ hotel.numtel }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('hotel_show', { 'id': hotel.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('hotel_edit', { 'id': hotel.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('hotel_new') }}">Create a new hotel</a>
+        </li>
+    </ul>
+{% endblock %}

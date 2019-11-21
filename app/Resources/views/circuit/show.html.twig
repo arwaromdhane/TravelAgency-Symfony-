@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %} Circuits  {% endblock %}
+
+{% block body %}
+<div class=" col-lg-6 ">
+
+    <table class="table table-bordered">
+       
+    
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ circuit.id }}</td>
+            </tr>
+            <tr>
+                <th>image</th>
+                <td>  <img style="height:100px; width:100px;" src="{{app.request.basepath}}/uploads/images/{{ circuit.image }}" /></td>
+            </tr>
+            
+            <tr>
+                <th>dateDebut</th>
+                <td>{{ circuit.dateDebut|date('m/d/y') }}</td>
+            </tr>
+             <tr>
+                <th>dateFin</th>
+                <td>{{ circuit.dateFin|date('m/d/y') }}</td>
+            </tr>
+             <tr>
+                <th>lieuDepart</th>
+                <td>{{ circuit.lieuDepart }}</td>
+            </tr>
+             <tr>
+                <th>lieuArrive</th>
+                <td>{{ circuit.lieuArrive }}</td>
+            </tr>
+             <tr>
+                <th>tarifs</th>
+                <td>{{ circuit.tarifs }}</td>
+            </tr>
+            <tr>
+                <th>description</th>
+                <td>{{ circuit.description }}</td>
+            </tr>
+            
+            <tr>
+                <th>Passager</th>
+                <td>{{ circuit.passager }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('circuit_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('circuit_edit', { 'id': circuit.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" class="btn btn-danger" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+</div>
+{% endblock %}

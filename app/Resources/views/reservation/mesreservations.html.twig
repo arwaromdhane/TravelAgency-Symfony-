@@ -1,0 +1,148 @@
+{% extends 'baseFront.html.twig' %}
+{% block activeMesReservation %}
+ <li class="main_nav_item active ">
+	<a   href="{{ path('mesReservations', {'id': app.user.id} ) }}">Mes réservations</a>
+</li>
+{% endblock %}
+
+{% block mesreservation %}
+
+	<div class="find">
+		<!-- Image by https://unsplash.com/@garciasaldana_ -->
+		<div class="find_background parallax-window" data-parallax="scroll" data-image-src="{{asset('front/')}}images/find.jpg" data-speed="0.8"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="find_title text-center">Liste de mes Reservations </div>
+				</div>
+				<div class="col-12" style="background-color: #e8eaef69; color: white;">
+					<div class="find_form_container">
+ 						<div style=" color: #fb425a; font-weight: bolder;font-size: 20px;"> Hotels </div>
+					    <table class="table table-bordered">
+					        <thead>
+					            <tr>
+					                 
+					                <th>Date de Réservation</th>
+					                <th>Hotel</th>
+					                <th>Message</th>
+					                <th>Num .Tel</th>
+					                <th>Nombre passager</th>					                
+					                <th>Type chambre</th>
+					                <th>Type pension</th>
+					                <th>Prix</th>
+					                <th>Etat</th>
+					            </tr>
+					        </thead>
+					        <tbody>
+					        {% for reservation in reservations if (reservation.user.id == app.user.id and reservation.hotel != null) %}
+					            <tr>					              
+					                <td>{% if reservation.datereservation %}{{ reservation.datereservation|date('Y-m-d') }}{% endif %}</td>
+					                <td> 
+					                	{{ reservation.hotel }}
+ 					                </td>
+					                <td>{{ reservation.message }}</td>
+					                <td>{{ reservation.numtel }}</td>
+					                <td>{{ reservation.nbpassager }}</td>
+					                <td>{{ reservation.typeCabinet }}</td>
+					                <td>{{ reservation.typePension }}</td>
+					                <td>
+					                	{% if reservation.typePension == "Petit déjeuner" %}
+					                		{{ reservation.hotel.tariLpd }} dt
+					                	{% elseif reservation.typePension == "Pension Complète" %}
+					                		{{ reservation.hotel.tarifPc }} dt
+					                	{% elseif reservation.typePension == "Demi pension" %}
+					                		{{ reservation.hotel.tarifsDp }} dt
+					                	{% else %}
+					                		{{ reservation.hotel.taridAllIn }} dt
+					                	{% endif %}
+
+					                </td>
+					                <td>
+ 					                	{% if reservation.etat  == "en attente" %}
+						                	<a class="btnCercle" style=" margin-left: 42%; display:block; height: 10px; width: 10px; border-radius: 50%; background-color: orange;" href="#">
+						                		<i class="ion-ios-arrow-down"></i>
+						                	</a>
+						                {% elseif reservation.etat  == "refusé"  %}
+						               		 <a class="btnCercle" style=" margin-left: 42%; display:block; height: 10px; width: 10px; border-radius: 50%;  background-color: red;" href="#">
+						                		<i class="ion-ios-arrow-down"></i>
+						                	</a>
+						                {% elseif reservation.etat  == "accepté" %}
+						                	<a class="btnCercle"accepté title="Acceptée" style=" margin-left: 42%; display:block; height: 10px; width: 10px; border-radius: 50%;  background-color: green;" href="#">
+						                		<i class="ion-ios-arrow-down"></i>
+						                	</a>
+						                {% endif %}
+				                	
+					                </td>					                 
+					            </tr>
+					        {% else %}
+					        	<tr>
+					        		<td colspan="8">
+					        			Acune réservation trouvée.
+					        		</td>
+					        	</tr>
+					        {% endfor %}
+					        </tbody>
+					    </table>
+
+					</div>
+				</div>
+
+				<div class="col-12" style="background-color: #e8eaef69; color: white;">
+					<div class="find_form_container">
+ 						<div style=" color: #fb425a; font-weight: bolder;font-size: 20px;" >Rondonnées</div>
+					    <table class="table table-bordered">
+					        <thead>
+					            <tr>					                 
+					                <th>Date de Réservation</th>
+					                <th>Rondonnée</th>
+					                <th>Message</th>
+					                <th>Num .Tel</th>
+					                <th>Nombre passager</th>					                
+ 					                <th>Etat</th>
+					            </tr>
+					        </thead>
+					        <tbody>
+					        {% for reservation in reservations if (reservation.user.id == app.user.id and reservation.excursion != null ) %}
+					            <tr>					              
+					                <td>{% if reservation.datereservation %}{{ reservation.datereservation|date('Y-m-d') }}{% endif %}</td>
+					                <td>{{ reservation.Excursion }} </td>
+					                <td>{{ reservation.message }}</td>
+					                <td>{{ reservation.numtel }}</td>
+					                <td>{{ reservation.nbpassager }}</td>
+ 					                <td>
+ 					                	{% if reservation.etat  == "en attente" %}
+						                	<a class="btnCercle" style=" margin-left: 42%; display:block; height: 10px; width: 10px; border-radius: 50%; background-color: orange;" href="#">
+						                		<i class="ion-ios-arrow-down"></i>
+						                	</a>
+						                {% elseif reservation.etat  == "refusé"  %}
+						               		 <a class="btnCercle" style=" margin-left: 42%; display:block; height: 10px; width: 10px; border-radius: 50%;  background-color: red;" href="#">
+						                		<i class="ion-ios-arrow-down"></i>
+						                	</a>
+						                {% elseif reservation.etat  == "accepté" %}
+						                	<a class="btnCercle" style=" margin-left: 42%; display:block; height: 10px; width: 10px; border-radius: 50%;  background-color: green;" href="#">
+						                		<i class="ion-ios-arrow-down"></i>
+						                	</a>
+						                {% endif %}
+				                	
+					                </td>					                 
+					            </tr>
+					        {% else %}
+					        	<tr>
+					        		<td colspan="8">
+					        			Acune réservation trouvée.
+					        		</td>
+					        	</tr>
+					        {% endfor %}
+					        </tbody>
+					    </table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+ 
+    
+   
+ 
+{% endblock %}

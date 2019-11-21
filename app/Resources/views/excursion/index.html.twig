@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block title %} Excursions list {% endblock %}
+{% block body %}
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> </th>
+                <th>dateDebut</th>
+                <th>dateFin</th>
+                <th>lieuDepart</th>
+                <th>lieuArrive</th>
+                <th>tarifs</th>
+                <th>description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for excursion in excursions %}
+            <tr>
+                <td>
+                    <img style="height: 100px; width:100px;" src="{{app.request.basepath}}/uploads/images/{{ excursion.image }}" />
+                </td>
+                <td>{{ excursion.dateDebut|date('d/m/y') }}</td>
+                <td>{{ excursion.dateFin|date('d/m/y') }}</td>
+                <td>{{ excursion.lieuDepart }}</td>
+                <td>{{ excursion.lieuArrive }}</td>
+                <td>{{ excursion.tarifs }}</td>
+                <td>{{ excursion.description }}</td>
+                <td>
+                   <a href="{{ path('excursion_edit', { 'id': excursion.id }) }}">edit</a>
+                    
+                     
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('excursion_new') }}">Create a new excursion</a>
+        </li>
+    </ul>
+{% endblock %}

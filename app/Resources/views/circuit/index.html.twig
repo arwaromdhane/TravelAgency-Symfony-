@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Circuit List  {% endblock %}
+
+{% block body %}
+<div class=" col-lg-12 ">
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>image</th>
+                <th>dateDebut</th>
+                <th>dateFin</th>                
+                <th>tarifs</th>                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for circuit in circuits %}
+            <tr>
+                <td><a href="{{ path('circuit_show', { 'id': circuit.id }) }}">{{ circuit.id }}</a></td>
+                <td>
+                    <img style="height:100px; width:100px;" src="{{app.request.basepath}}/uploads/images/{{ circuit.image }}" />
+                </td>
+
+                <td>{{ circuit.dateDebut|date("m/d/Y") }}</td>
+                <td>{{ circuit.dateFin|date("m/d/Y")}}</td>
+                <td>{{ circuit.tarifs }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('circuit_show', { 'id': circuit.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('circuit_edit', { 'id': circuit.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% else %}
+            <tr> <td colspan="6">Aucune excursion est trouvée.</td> </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <a class="btn btn-primary" href="{{ path('circuit_new') }}">Create a new circuit</a>
+       
+</div>
+{% endblock %}
